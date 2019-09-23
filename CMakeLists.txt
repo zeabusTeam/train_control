@@ -27,5 +27,12 @@ catkin_package(
 )
 
 include_directories(
-    ${catkin_INCKUDE_DIRS}
+    ${catkin_INCLUDE_DIRS}
 )
+
+add_executable( first_model problem/plan_1_dimension.cpp )
+add_dependencies( first_model 
+    ${${PROJECT_NAME}_EXPORTED_TARGETS}
+    ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries( first_model ${catkin_LIBRARIES})
