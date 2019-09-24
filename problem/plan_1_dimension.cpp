@@ -68,7 +68,7 @@ int main( int argv , char** argc )
     std_msgs::Float64 force;
     force.data = 0;
     subscribe_object< std_msgs::Float64 > sub_force( &force );
-    ros::Subscriber ros_sub = node_handle.subscribe( "force" , 1 , 
+    ros::Subscriber ros_sub = node_handle.subscribe( "/force" , 1 , 
             &subscribe_object< std_msgs::Float64 >::callback , &sub_force );
 
     ros::Rate rate( 10 );

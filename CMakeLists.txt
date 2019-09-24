@@ -36,3 +36,10 @@ add_dependencies( first_model
     ${catkin_EXPORTED_TARGETS}
 )
 target_link_libraries( first_model ${catkin_LIBRARIES})
+
+add_executable( first_control HW01/control.cpp)
+add_dependencies( first_control 
+    ${${PROJECT_NAME}_EXPORTED_TARGETS}
+    ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries( first_control ${catkin_LIBRARIES})
