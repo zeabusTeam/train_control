@@ -42,7 +42,44 @@ class Control:
         answer = 0.0
         print( "(point , velocity , acceleration , target ) : ( {:6.3f} , {:6.3f} , {:6.3f} , {:6.3f}".format( current_point , current_velocity , current_acceleration , target_point ) ) 
 #==================================== EDIT at HERE ============================================
+        #target module 
+        if target_point < 0:
+            target = target_point + abs(current_point)
+        else:
+            target = target_point - current_point
+        print('target =',target)
+        
+        #velocity module    
+        if (-0.1<target<0.1):
+            target_velocity = 0
+            answer = 0
+        elif (-0.5<target<0.5):
+            if target > 0:
+                target_velocity = 0.1
+            else:
+                target_velocity = -0.1
+        else:
+            target_velocity = target*0.2
+        print('target velocity =', target_velocity)
+        
+        #acceleration module  
+        if target_velocity > 0: 
+            if target_velocity - current_velocity > 0:
+                target_acceleration = target_velocity*0.5
+            else:
+                target_acceleration = target_velocity*(-0.5)
+        elif target_velocity < 0:
+            if target_velocity - current_velocity > 0:
+                target_acceleration = target_velocity*(-0.5)
+            else:
+                target_acceleration = target_velocity*(0.5)
+        else:
+            target_acceleration = 0
+        print('target acceleration =', target_acceleration)
 
+        
+        #force module
+        answer = 1.15*(target_acceleration*20)        
 #==============================================================================================
         print( "command force is " + str( answer ) + "\n")
         return answer
