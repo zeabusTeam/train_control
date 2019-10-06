@@ -118,9 +118,20 @@ int main( int argv , char** argc )
             model_state.velocity = ( previous_model_state.velocity +
                     (previous_model_state.acceleration*diff_time ) );
 
+            // In case about kinetic friction we must have problem about velocity can't be
             if( fabs( force.data ) < Epsilon )
             {
                 if( model_state.velocity * previous_model_state.velocity < 0 )
+                {
+                    model_state.velocity = 0;
+                    model_state.acceleration = 0;
+                }
+            }
+            else if( ( fabs( force.data ) < fabs( friction ) ) && 
+                    ( force.data * friction < 0 ) )
+            {
+                if( ( model_state.velocity * friction ) > 0 && 
+                        ( force.data * model_state.velocity ) < 0 )
                 {
                     model_state.velocity = 0;
                     model_state.acceleration = 0;

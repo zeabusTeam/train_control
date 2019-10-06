@@ -11,6 +11,8 @@ find_package( catkin REQUIRED COMPONENTS
 add_message_files(
     FILES
     SingleState.msg
+    ForcePlane.msg
+    ForceThruster.msg
 )
 
 generate_messages(
@@ -43,3 +45,5 @@ add_dependencies( first_control
     ${catkin_EXPORTED_TARGETS}
 )
 target_link_libraries( first_control ${catkin_LIBRARIES})
+
+add_subdirectory( HW02 )
