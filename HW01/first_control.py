@@ -42,6 +42,34 @@ class Control:
         answer = 0.0
         print( "(point , velocity , acceleration , target ) : ( {:6.3f} , {:6.3f} , {:6.3f} , {:6.3f}".format( current_point , current_velocity , current_acceleration , target_point ) ) 
 #==================================== EDIT at HERE ============================================
+        if target_point > 7.8:
+            if current_point == 0:
+                answer = 51.0092
+            if current_point > 0:
+                answer = 0.65
+            if target_point - current_point <= 7.8:
+                answer = 0
+        if target_point < -7.8:
+            if current_point == 0:
+                answer = -51.00930909
+            if current_point < 0:
+                answer = -0.65
+            if target_point - current_point >= -7.8:
+                answer = 0
+        if 0 < target_point <= 7.8:
+            if current_point == 0:
+                answer = 6.0086
+            if current_point > 0:
+                answer = 0.65
+            if target_point - current_point <= 0.09:
+                answer = 0
+        if 0 > target_point >= -7.8:
+            if current_point == 0:
+                answer = -6.0086
+            if current_point < 0:
+                answer = -0.65
+            if target_point - current_point >= -0.09:
+                answer = 0
 
 #==============================================================================================
         print( "command force is " + str( answer ) + "\n")
