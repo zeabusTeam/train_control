@@ -41,7 +41,7 @@ class ThrusterMapper:
         ])
         self.direction = numpy.concatenate((self.direction_linear, self.direction_angular), axis=1)
         self.direction_inverse = numpy.linalg.pinv(self.direction)
-
+    
     def thruster_mapper(self, force_x, force_y, moment_z):
         command = numpy.array([
             [force_x],
