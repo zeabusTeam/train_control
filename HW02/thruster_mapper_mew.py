@@ -54,13 +54,19 @@ class ThrusterMapper:
         print('Force Thruster (1-4):')
         print(force_thrust.T)
 
-    def force(self):
+    def loop_force(self):
         temp_force = ForcePlane()
-        thrust = self.thruster_mapper(temp_force.force_x, temp_force.force_y, temp_force.moment_z)     
+        rate = rospy.Rate(0.5)
+        while not rospy.is_shutdown():
+            temp_force = self.force_message
+            thrust = self.thruster_mapper(temp_force.force_x, temp_force.force_y, temp_force.moment_z)
+            rate.sleep()
+            if temp_force.force_x != 0 or temp_force.force_y != 0 or temp_force.moment_z != 0:
+                rospy.spin()
     
     def callback_force(self, message):
         self.force_message = message
 
 if __name__ == '__main__':
     thruster_mapper_mew = ThrusterMapper()
-    thruster_mapper_mew.force()
+    thruster_mapper_mew.loop_force()
